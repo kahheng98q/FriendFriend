@@ -19,10 +19,9 @@
         <action
             android:id="@+id/action_home_to_chatRoom"
             app:destination="@id/chatRoom" />
-
         <action
-            android:id="@+id/action_home_to_profileActivity"
-            app:destination="@id/profile" />
+            android:id="@+id/action_home_to_scheduleMain"
+            app:destination="@id/scheduleMain" />
     </fragment>
     <activity
         android:id="@+id/addedFriend"
@@ -44,4 +43,9 @@
         android:name="com.example.friendfriend.Profile.ProfileActivity"
         android:label="activity_profile"
         tools:layout="@layout/activity_profile" />
+    <activity
+        android:id="@+id/scheduleMain"
+        android:name="com.example.friendfriend.schedule.ScheduleMain"
+        android:label="schedule_main"
+        tools:layout="@layout/schedule_main" />
 </navigation>

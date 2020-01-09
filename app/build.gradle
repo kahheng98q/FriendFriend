@@ -71,6 +71,5 @@ dependencies {
     implementation "android.arch.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "android.arch.navigation:navigation-ui-ktx:$navigationVersion"
     implementation "com.google.android.material:material:$supportlibVersion"
-
 }
 apply plugin: 'com.google.gms.google-services'

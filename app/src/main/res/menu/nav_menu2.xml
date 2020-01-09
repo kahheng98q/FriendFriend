@@ -19,5 +19,8 @@
 
         android:title="Confession"
         />
+    <item android:id="@+id/scheduleMain"
 
+        android:title="Schedule"
+        />
 </menu>
