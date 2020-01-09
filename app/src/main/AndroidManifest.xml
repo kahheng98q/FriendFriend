@@ -9,14 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".addFriend.AddFriend"
-            android:parentActivityName=".addFriend.AddedFriend"></activity>
-        <activity android:name=".addFriend.FriendRequest"
-            android:parentActivityName=".addFriend.AddedFriend"/>
-        <activity android:name=".addFriend.AddedFriend"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".addFriend.FriendProfile"
-            android:parentActivityName=".addFriend.AddedFriend"/>
+        <activity android:name=".caption.Confession_Page"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".caption.CaptionActivity" />
+        <activity
+            android:name=".addFriend.AddFriend"
+            android:parentActivityName=".addFriend.AddedFriend" />
+        <activity
+            android:name=".addFriend.FriendRequest"
+            android:parentActivityName=".addFriend.AddedFriend" />
+        <activity
+            android:name=".addFriend.AddedFriend"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".addFriend.FriendProfile"
+            android:parentActivityName=".addFriend.AddedFriend" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

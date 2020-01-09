@@ -8,4 +8,9 @@
         android:id="@+id/addedFriend"
 
         android:title="Friends" />
+    <item
+        android:id="@+id/confession_Page"
+
+        android:title="Confession"
+        />
 </menu>

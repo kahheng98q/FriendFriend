@@ -13,10 +13,18 @@
         <action
             android:id="@+id/action_home2_to_addedFriend2"
             app:destination="@id/addedFriend" />
+        <action
+            android:id="@+id/action_home_to_confession_Page2"
+            app:destination="@id/confession_Page" />
     </fragment>
     <activity
         android:id="@+id/addedFriend"
         android:name="com.example.friendfriend.addFriend.AddedFriend"
         android:label="activity_added_friend"
         tools:layout="@layout/activity_added_friend" />
+    <activity
+        android:id="@+id/confession_Page"
+        android:name="com.example.friendfriend.caption.Confession_Page"
+        android:label="activity_confession__page"
+        tools:layout="@layout/activity_confession__page" />
 </navigation>
