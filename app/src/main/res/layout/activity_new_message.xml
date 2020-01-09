@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-    tools:context=".Messaging.NewMessage">
+    tools:context=".messaging.NewMessage">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewMsg"

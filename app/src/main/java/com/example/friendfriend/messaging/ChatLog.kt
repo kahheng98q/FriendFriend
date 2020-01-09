@@ -1,4 +1,4 @@
-package com.example.friendfriend.Messaging
+package com.example.friendfriend.messaging
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

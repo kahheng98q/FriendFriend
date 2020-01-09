@@ -2,7 +2,7 @@ package com.example.friendfriend.views
 
 import com.example.friendfriend.R
 import com.example.friendfriend.User
-import com.example.friendfriend.Messaging.chatMessage
+import com.example.friendfriend.messaging.chatMessage
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

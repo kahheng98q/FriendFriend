@@ -1,4 +1,4 @@
-package com.example.friendfriend.Messaging
+package com.example.friendfriend.messaging
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.example.friendfriend.Messaging.NewMessage.Companion.USER_KEY
+import com.example.friendfriend.messaging.NewMessage.Companion.USER_KEY
 import com.example.friendfriend.R
 import com.example.friendfriend.RegisterActivity
 import com.example.friendfriend.User
