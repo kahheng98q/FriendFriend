@@ -69,7 +69,7 @@
                        android:layout_height="wrap_content"
                        android:textStyle="bold"
                        android:layout_marginTop="10dp"
-                       android:text="Message"/>
+                       android:text="Friend"/>
 
                </LinearLayout>
            </androidx.cardview.widget.CardView>
@@ -106,7 +106,7 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:layout_marginTop="10dp"
-                        android:text="Message"/>
+                        android:text="Calendar"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -133,7 +133,7 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:layout_marginTop="10dp"
-                        android:text="Message"/>
+                        android:text="Confession"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

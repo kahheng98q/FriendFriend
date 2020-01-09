@@ -19,7 +19,8 @@ class LoginActivity: AppCompatActivity(){
 
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email!!,password)
                 .addOnCompleteListener {
-                    login()
+                    if(!it.isSuccessful)return@addOnCompleteListener
+                         login()
                      }
                 .addOnFailureListener {
                     Toast.makeText(this, "Please re-enter your ID and Password", Toast.LENGTH_SHORT).show()
@@ -33,7 +34,7 @@ class LoginActivity: AppCompatActivity(){
     private fun login(){
         val intents = Intent(this, MainActivity::class.java)
 
-        intent.putExtra("Email",email)
+//        intent.putExtra("Email",email)
 
         intents.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intents)
