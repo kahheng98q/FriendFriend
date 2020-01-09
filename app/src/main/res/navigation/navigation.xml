@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_home_to_confession_Page2"
             app:destination="@id/confession_Page" />
+        <action
+            android:id="@+id/action_home_to_chatRoom"
+            app:destination="@id/chatRoom" />
     </fragment>
     <activity
         android:id="@+id/addedFriend"
@@ -27,4 +30,9 @@
         android:name="com.example.friendfriend.caption.Confession_Page"
         android:label="activity_confession__page"
         tools:layout="@layout/activity_confession__page" />
+    <activity
+        android:id="@+id/chatRoom"
+        android:name="com.example.friendfriend.Messaging.ChatRoom"
+        android:label="activity_chat_room"
+        tools:layout="@layout/activity_chat_room" />
 </navigation>

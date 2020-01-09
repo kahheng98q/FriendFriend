@@ -94,8 +94,6 @@ class FriendAdapter (val context: Context,val friendList:ArrayList<Friend>):Recy
             friendProfile=itemView.findViewById(R.id.friendProfile) as LinearLayout
             image=itemView.findViewById(R.id.profilePic) as CircleImageView
 
-
-
         }
 
     }

@@ -114,11 +114,7 @@ class AddedFriend : AppCompatActivity() {
     }
     fun getAddedFriend():Boolean{
 
-//       var fref =db.collection("New").document("kh@gmail.com").collection("AddedFriend").get().await()
-//        fref.forEach{
-//            documents->
-//
-//        }
+
 
         db.collection("New").document("kh@gmail.com").collection("AddedFriend")
             .get()
@@ -133,9 +129,9 @@ class AddedFriend : AppCompatActivity() {
                     retrieveFriends(document.id)
                     //   }
                 }
-
             }
             .addOnFailureListener { exception ->
+                Toast.makeText(applicationContext, "GG", Toast.LENGTH_SHORT).show()
                 Log.w("ss", "Error getting documents: ", exception)
                 //  friends.add(Friend("GG","GG","hi"))
             }
@@ -166,7 +162,6 @@ class AddedFriend : AppCompatActivity() {
             }
     }
     fun setView():Boolean{
-
         adapter= FriendAdapter(this, friends)
         recyclerView.adapter=adapter
         return true

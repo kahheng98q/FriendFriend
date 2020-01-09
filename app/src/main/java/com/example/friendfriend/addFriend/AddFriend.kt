@@ -23,6 +23,15 @@ class AddFriend : AppCompatActivity() {
     val db = FirebaseFirestore.getInstance()
     lateinit var selfName: String
     val friends = ArrayList<Friend>()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_add_friend)
+        setTitle("Add Friend")
+
+        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         //val inflater=menuInflater
         menuInflater.inflate(R.menu.addfriend, menu)
@@ -76,7 +85,7 @@ class AddFriend : AppCompatActivity() {
 
     fun setView(): Boolean {
         adapter = FriendAdapter(this, friends)
-        recyclerView.adapter = adapter
+       // recyclerView.adapter = adapter
         if (friends.isEmpty()) {
             Toast.makeText(applicationContext, "Email didn't exist.", Toast.LENGTH_SHORT).show()
         }
@@ -87,8 +96,7 @@ class AddFriend : AppCompatActivity() {
     fun displayLoading() {
         val builder = AlertDialog.Builder(this)
         val dialogView = layoutInflater.inflate(R.layout.progress_dialog, null)
-//        val message=dialogView.findViewById<TextView>(R.id.message)
-//        message.text
+
         builder.setView(dialogView)
         builder.setCancelable(false)
         val dialog = builder.create()
@@ -97,9 +105,6 @@ class AddFriend : AppCompatActivity() {
             dialog.dismiss()
             setView()
         }, 3000)
-//        progressDialog= ProgressDialog(context)
-//        progressDialog.setMessage("Loading")
-//        progressDialog.setCancelable(false)
-//        progressDialog.show()
+
     }
 }

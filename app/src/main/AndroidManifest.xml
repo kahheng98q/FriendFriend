@@ -40,7 +40,22 @@
         <activity android:name=".caption.CaptionActivity" />
         <activity
             android:name=".addFriend.AddFriend"
-            android:parentActivityName=".addFriend.AddedFriend" />
+            android:parentActivityName=".addFriend.AddedFriend"
+            android:launchMode="singleTop"
+            >
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+        </activity>
+
         <activity
             android:name=".addFriend.FriendRequest"
             android:parentActivityName=".addFriend.AddedFriend" />
