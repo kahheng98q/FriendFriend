@@ -27,12 +27,15 @@ class AddedFriend : AppCompatActivity() {
     lateinit var selfName: String
     val friends= ArrayList<Friend>()
     val emails= ArrayList<String>()
+
     lateinit var context: Context
     lateinit var progressDialog:ProgressDialog
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_added_friend)
         setTitle("Friend List")
+//        selfName = intent.getStringExtra("Email")
         selfName="kh@gmail.com"
         context=this
         recyclerView=findViewById(R.id.recyclerView)
@@ -116,7 +119,7 @@ class AddedFriend : AppCompatActivity() {
 
 
 
-        db.collection("New").document("kh@gmail.com").collection("AddedFriend")
+        db.collection("New").document(selfName).collection("AddedFriend")
             .get()
             .addOnSuccessListener {
                     documents ->
