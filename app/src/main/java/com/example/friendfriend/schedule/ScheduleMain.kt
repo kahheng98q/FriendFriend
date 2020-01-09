@@ -29,12 +29,20 @@ class ScheduleMain : AppCompatActivity() {
     private var time = ArrayList<String>()
     private var title = ArrayList<String>()
 
+    var selfName = ""
+
     @ExperimentalTime
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.schedule_main)
-        setSupportActionBar(toolbar)
+
+        val user = FirebaseAuth.getInstance().currentUser
+        user?.let {
+
+            selfName = user.email.toString()
+
+        }
 
         eventClass = mutableListOf()
 
@@ -77,7 +85,7 @@ class ScheduleMain : AppCompatActivity() {
             title.clear()
             time.clear()
 
-            db.collection(msg).get()
+            db.collection(selfName).document(selfName).collection(msg).get()
                 .addOnSuccessListener { documents ->
                     for(document in documents) {
                         title.add(document.get("Title").toString())
@@ -135,17 +143,5 @@ class ScheduleMain : AppCompatActivity() {
 
         notificationManager.notify(1, notification.build())
         // it is better to not use 0 as notification id, so used 1.
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 }

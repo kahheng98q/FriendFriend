@@ -2,6 +2,7 @@ package com.example.friendfriend.schedule
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.view.View
@@ -20,11 +21,13 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 import java.time.LocalDate
 import com.example.friendfriend.R
+import com.google.firebase.auth.FirebaseAuth
 
 
 class NewEvent : AppCompatActivity() {
 
     lateinit var db: DocumentReference
+    private var selfName = ""
 
     var checkOneDay = true
 
@@ -32,6 +35,13 @@ class NewEvent : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.new_event)
+
+        val user = FirebaseAuth.getInstance().currentUser
+        user?.let {
+
+            selfName = user.email.toString()
+
+        }
 
         db = FirebaseFirestore.getInstance().document("")
 
@@ -114,7 +124,7 @@ class NewEvent : AppCompatActivity() {
                             items["EndTime"] = endTime
                             items["Venue"] = venue
 
-                            db.collection(start.format(format)).document("$startTime - $endTime: $title")
+                            db.collection(selfName).document(selfName).collection(start.format(format)).document("$startTime - $endTime: $title")
                                 .set(items)
                                 .addOnSuccessListener {
                                     Toast.makeText(this, "New event added. ", Toast.LENGTH_LONG).show()
@@ -129,8 +139,8 @@ class NewEvent : AppCompatActivity() {
                     }
 
 
-                    //val intent = Intent(this, ScheduleMain::class.java)
-                    //startActivity(intent)
+                    val intent = Intent(this, ScheduleMain::class.java)
+                    startActivity(intent)
                 }
             }else{
                 Toast.makeText(this, "Please fill up the fields. ",Toast.LENGTH_LONG).show()
@@ -163,7 +173,7 @@ class NewEvent : AppCompatActivity() {
                         items["EndTime"] = endTime
                         items["Venue"] = venue
 
-                        db.collection(startDate).document("$startTime - $endTime: $title")
+                        db.collection(selfName).document(selfName).collection(startDate).document("$startTime - $endTime: $title")
                             .set(items)
                             .addOnSuccessListener {
                                 Toast.makeText(this, "New event added. ", Toast.LENGTH_LONG).show()
@@ -175,8 +185,8 @@ class NewEvent : AppCompatActivity() {
                     }
 
 
-                    //val intent = Intent(this, ScheduleMain::class.java)
-                    //startActivity(intent)
+                    val intent = Intent(this, ScheduleMain::class.java)
+                    startActivity(intent)
                 }
             }else{
                 Toast.makeText(this, "Please fill up the fields. ",Toast.LENGTH_LONG).show()
