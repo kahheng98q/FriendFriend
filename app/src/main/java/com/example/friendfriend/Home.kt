@@ -19,7 +19,7 @@ import com.example.friendfriend.databinding.FragmentHomeBinding
  */
 class Home : Fragment() {
 
-  
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,9 +59,7 @@ class Home : Fragment() {
         )
                 || super.onOptionsItemSelected(item)
     }
-    fun confess(view: View) {
-        view.findNavController().navigate(R.id.action_home_to_confession_Page2)
-    }
+  
 
 
 }
