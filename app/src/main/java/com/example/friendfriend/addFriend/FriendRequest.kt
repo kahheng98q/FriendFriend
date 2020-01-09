@@ -13,6 +13,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -20,14 +21,13 @@ class FriendRequest : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
     lateinit var adapter:FriendRequestAdapter
     val db= FirebaseFirestore.getInstance()
-    lateinit var selfName: String
+    lateinit var currentEmail: String
     val friends= ArrayList<Friend>()
     val emails= ArrayList<String>()
     //table and self email
     val userTable="New"
-    val currentEmail="kh@gmail.com"
-    val currentName="Kah Heng"
-    val currentImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2iIe9gEuJbItE3_azb1sOA29i8Py_A0TaZDTTUKyJoAEVbgYr&s"
+    //val currentEmail="kh@gmail.com"
+
     //category
     val request="FriendRequest"
     val sent="SentFriendRequest"
@@ -43,7 +43,7 @@ class FriendRequest : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_friend_request)
         setTitle("Friend Request")
-
+        getCurrentUser()
         recyclerView=findViewById(R.id.recyclerView)
         recyclerView.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
         displayFriendRequest()
@@ -111,5 +111,13 @@ class FriendRequest : AppCompatActivity() {
 
         },3000)
 
+    }
+    private fun getCurrentUser(){
+        val user = FirebaseAuth.getInstance().currentUser
+        user?.let {
+
+            currentEmail = user.email.toString()
+
+        }
     }
 }

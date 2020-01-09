@@ -9,18 +9,23 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.friendfriend.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
 //    lateinit var bundle:Bundle
-    lateinit var home: Home
+
+    lateinit var selfName: String
+    lateinit var selfEmail: String
+    lateinit var selfImage: String
     override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
 
         super.onCreate(savedInstanceState)
         @Suppress("UNUSED_VARIABLE")
-
+        selfEmail ="AAAAAAA"
+        selfName="BBBBBBBBBBB"
         val binding =
             DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         drawerLayout = binding.drawerLayout
@@ -28,13 +33,15 @@ class MainActivity : AppCompatActivity() {
 
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(binding.navView, navController)
+        getCurrentUser()
+        Toast.makeText(this, selfName,Toast.LENGTH_SHORT).show()
 //        bundle.putString("gg","ggg")
 //        home.arguments=bundle
-        val bundle = Bundle()
-        bundle.putString("key", "value")
+//        val bundle = Bundle()
+//        bundle.putString("key", "value")
 
-        val fragment =Home()
-        fragment.arguments = bundle
+//        val fragment =Home()
+//        fragment.arguments = bundle
 //bundle.getString("key")
 //        Toast.makeText(this,bundle.getString("key"),Toast.LENGTH_SHORT).show()
     }
@@ -51,4 +58,15 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
+    private fun getCurrentUser(){
+        val user = FirebaseAuth.getInstance().currentUser
+        user?.let {
+
+//            selfEmail = user.email.toString()
+//            selfName=user.displayName.toString()
+
+
+        }
+    }
+
 }

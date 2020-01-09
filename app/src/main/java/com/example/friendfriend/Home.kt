@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -15,14 +16,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.friendfriend.databinding.FragmentHomeBinding
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.cardviewcontent.*
 
 /**
  * A simple [Fragment] subclass.
  */
 class Home : Fragment() {
     lateinit var selfName: String
-    lateinit var bundle:Bundle
-
+    lateinit var selfEmail: String
+    lateinit var selfImage: String
+    lateinit var textViewName:TextView
+    lateinit var textViewAddress:TextView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,7 +36,10 @@ class Home : Fragment() {
             inflater,
             R.layout.fragment_home, container, false
         )
-
+        getCurrentUser()
+        Toast.makeText(context, selfName,Toast.LENGTH_SHORT).show()
+//        textViewName=this.(R.id.textViewName) as TextView
+//        textViewAddress=this.findViewById(R.id.textViewAddress) as TextView
 //        savedInstanceState!!.getString("key")
 //        bundle=this.arguments!!
 //
@@ -43,7 +51,7 @@ class Home : Fragment() {
 //        view!!.findNavController().navigate(R.id.confirmationAction, bundle)
 
         binding.messagecard.setOnClickListener{
-//            bundle.putString("gg","ggg")
+//
             view!!.findNavController().navigate(R.id.action_home_to_chatRoom)
         }
         binding.friendcard.setOnClickListener{
@@ -62,7 +70,15 @@ class Home : Fragment() {
         return binding.root
 
     }
+    private fun getCurrentUser(){
+        val user = FirebaseAuth.getInstance().currentUser
+        user?.let {
 
+            selfEmail = user.email.toString()
+            selfName=user.displayName.toString()
+
+        }
+    }
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
