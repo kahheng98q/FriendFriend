@@ -47,6 +47,7 @@
                 android:layout_marginTop="18dp"
                 android:layout_toEndOf="@+id/profilePic"
                 android:layout_toRightOf="@+id/profilePic"
+                android:visibility="gone"
                 android:text="@string/Address" />
 
             <TextView
@@ -59,7 +60,8 @@
                 android:layout_marginTop="17dp"
                 android:layout_toEndOf="@+id/profilePic"
                 android:layout_toRightOf="@+id/profilePic"
-                android:text="@string/Email" />
+                android:text="@string/Email"
+               />
             <Button
                 android:id="@+id/buttonAccept"
                 android:layout_width="wrap_content"

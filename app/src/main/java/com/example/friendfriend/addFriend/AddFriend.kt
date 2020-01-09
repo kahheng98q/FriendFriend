@@ -50,9 +50,11 @@ class AddFriend : AppCompatActivity() {
             }
 
             override fun onQueryTextSubmit(query: String): Boolean {
+//                Toast.makeText(applicationContext,query,Toast.LENGTH_SHORT).show()
                 displayLoading()
                 val lowercase = query.toLowerCase()
                 retrieveFriends(lowercase)
+
                 return false
             }
 
@@ -85,7 +87,7 @@ class AddFriend : AppCompatActivity() {
 
     fun setView(): Boolean {
         adapter = FriendAdapter(this, friends)
-       // recyclerView.adapter = adapter
+        recyclerView.adapter = adapter
         if (friends.isEmpty()) {
             Toast.makeText(applicationContext, "Email didn't exist.", Toast.LENGTH_SHORT).show()
         }

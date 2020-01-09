@@ -7,18 +7,20 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.login_activity.*
 
 class LoginActivity: AppCompatActivity(){
+    lateinit var email :String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity)
 
         bt_login.setOnClickListener{
-            val email = edt_emails.text.toString()
-            val password = edt_LoginPassword.text.toString()
+             email = edt_emails.text.toString()
+             var password = edt_LoginPassword.text.toString()
 
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email!!,password)
                 .addOnCompleteListener {
-                    login()
+                    if(!it.isSuccessful)return@addOnCompleteListener
+                         login()
                      }
                 .addOnFailureListener {
                     Toast.makeText(this, "Please re-enter your ID and Password", Toast.LENGTH_SHORT).show()
@@ -31,6 +33,9 @@ class LoginActivity: AppCompatActivity(){
     }
     private fun login(){
         val intents = Intent(this, MainActivity::class.java)
+
+//        intent.putExtra("Email",email)
+
         intents.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intents)
     }

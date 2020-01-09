@@ -14,7 +14,15 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.friendfriend.LoginActivity
 import com.example.friendfriend.R
+import com.example.friendfriend.User
+import com.example.friendfriend.messaging.ChatRoom
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 //import kotlinx.coroutines.*
 //import kotlinx.coroutines.GlobalScope.coroutineContext
@@ -27,20 +35,28 @@ class AddedFriend : AppCompatActivity() {
     lateinit var selfName: String
     val friends= ArrayList<Friend>()
     val emails= ArrayList<String>()
+    lateinit var email :String
     lateinit var context: Context
     lateinit var progressDialog:ProgressDialog
+//    companion object{
+//        var currentUser: User? = null
+//    }
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_added_friend)
         setTitle("Friend List")
-        selfName="kh@gmail.com"
+//        selfName = intent.getStringExtra("Email")
+//        selfName="kh@gmail.com"
+
+        getCurrentUser()
+
         context=this
+        Toast.makeText(applicationContext,selfName,Toast.LENGTH_SHORT).show()
         recyclerView=findViewById(R.id.recyclerView)
         recyclerView.layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         getFriends().execute()
-//    val dialogView=layoutInflater.inflate(R.layout.progress_dialog,null)
-//        displayLoading()
-//        getAddedFriend()
+
     }
     internal inner class getFriends:AsyncTask<Void,Void,String>(){
 
@@ -116,7 +132,7 @@ class AddedFriend : AppCompatActivity() {
 
 
 
-        db.collection("New").document("kh@gmail.com").collection("AddedFriend")
+        db.collection("New").document(selfName.toString()).collection("AddedFriend")
             .get()
             .addOnSuccessListener {
                     documents ->
@@ -165,6 +181,15 @@ class AddedFriend : AppCompatActivity() {
         adapter= FriendAdapter(this, friends)
         recyclerView.adapter=adapter
         return true
+    }
+
+    private fun getCurrentUser(){
+        val user =FirebaseAuth.getInstance().currentUser
+        user?.let {
+
+            selfName = user.email.toString()
+
+        }
     }
 
     fun displayLoading(){
