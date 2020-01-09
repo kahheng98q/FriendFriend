@@ -9,15 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Messaging.ChatLog">
+        <activity android:name=".messaging.ChatLog">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Messaging.ChatRoom" />
+                android:value=".messaging.ChatRoom" />
         </activity>
-        <activity android:name=".Messaging.NewMessage">
+        <activity android:name=".messaging.NewMessage">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Messaging.ChatRoom" />
+                android:value=".messaging.ChatRoom" />
         </activity>
         <activity android:name=".LoginActivity" >
             <intent-filter>
@@ -26,12 +26,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Messaging.ChatRoom" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".messaging.ChatRoom" >
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity">
         </activity>

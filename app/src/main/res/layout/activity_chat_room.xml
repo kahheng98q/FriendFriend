@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-    tools:context=".Messaging.ChatRoom">
+    tools:context=".messaging.ChatRoom">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatRoom_Recycle"

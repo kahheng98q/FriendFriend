@@ -10,7 +10,6 @@ import android.provider.MediaStore
 
 import android.util.Log
 import android.widget.Toast
-import com.example.friendfriend.Messaging.ChatRoom
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -63,10 +62,6 @@ class RegisterActivity : AppCompatActivity() {
         Log.d("RegisterActivity", "Password is: "+ password)
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
-                if (!task.isSuccessful) return@addOnCompleteListener
-
-                //else if successful
-                Log.d("RegisterActivity", "createUserWithEmail:success")
                 uploadImage()
             }
             .addOnFailureListener{
@@ -102,9 +97,7 @@ class RegisterActivity : AppCompatActivity() {
         ref.setValue(user)
             .addOnSuccessListener{
                 Log.d("RegisterActivity","Done saved")
-
-                val intent = Intent(this, ChatRoom::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
 
             }.addOnFailureListener{
