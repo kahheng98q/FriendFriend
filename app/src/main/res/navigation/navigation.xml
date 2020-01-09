@@ -19,6 +19,10 @@
         <action
             android:id="@+id/action_home_to_chatRoom"
             app:destination="@id/chatRoom" />
+
+        <action
+            android:id="@+id/action_home_to_profileActivity"
+            app:destination="@id/profile" />
     </fragment>
     <activity
         android:id="@+id/addedFriend"
@@ -35,4 +39,9 @@
         android:name="com.example.friendfriend.messaging.ChatRoom"
         android:label="activity_chat_room"
         tools:layout="@layout/activity_chat_room" />
+    <activity
+        android:id="@+id/profile"
+        android:name="com.example.friendfriend.Profile.ProfileActivity"
+        android:label="activity_profile"
+        tools:layout="@layout/activity_profile" />
 </navigation>

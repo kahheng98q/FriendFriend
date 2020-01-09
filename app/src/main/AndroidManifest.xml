@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Profile.passActivity"></activity>
+        <activity android:name=".Profile.ProfileActivity" ></activity>
         <activity android:name=".messaging.ChatLog">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -19,26 +21,23 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".messaging.ChatRoom" />
         </activity>
-        <activity android:name=".LoginActivity" >
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".messaging.ChatRoom" >
-
-        </activity>
-        <activity android:name=".RegisterActivity">
-        </activity>
-        <activity android:name=".caption.Confession_Page"
-            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".messaging.ChatRoom" />
+        <activity android:name=".RegisterActivity" />
+        <activity
+            android:name=".caption.Confession_Page"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".caption.CaptionActivity" />
         <activity
             android:name=".addFriend.AddFriend"
-            android:parentActivityName=".addFriend.AddedFriend"
             android:launchMode="singleTop"
-            >
+            android:parentActivityName=".addFriend.AddedFriend">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -49,9 +48,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-
         </activity>
-
         <activity
             android:name=".addFriend.FriendRequest"
             android:parentActivityName=".addFriend.AddedFriend" />
@@ -61,7 +58,6 @@
         <activity
             android:name=".addFriend.FriendProfile"
             android:parentActivityName=".addFriend.AddedFriend" />
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
