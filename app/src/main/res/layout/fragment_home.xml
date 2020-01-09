@@ -97,7 +97,7 @@
                         android:layout_height="64dp"
                         android:padding="10dp"
                         android:src="@drawable/ic_calandar"
-                        android:background="@color/colorAccent"
+                        android:background="@color/colorPrimaryDark"
 
                         />
 

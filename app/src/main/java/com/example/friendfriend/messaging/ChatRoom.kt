@@ -19,7 +19,7 @@ import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.activity_chat_room.*
 
 class ChatRoom : AppCompatActivity() {
-
+    lateinit var id: String
     companion object{
         var currentUser: User? = null
     }
@@ -96,9 +96,9 @@ class ChatRoom : AppCompatActivity() {
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
 
             override fun onDataChange(p0: DataSnapshot) {
-                currentUser = p0.getValue(
-                    User::class.java)
+                currentUser = p0.getValue(User::class.java)
                 Log.d("ChatRoom", "Current user ${currentUser?.username}")
+
             }
 
             override fun onCancelled(p0: DatabaseError) {
@@ -106,6 +106,7 @@ class ChatRoom : AppCompatActivity() {
             }
         })
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item?.itemId){

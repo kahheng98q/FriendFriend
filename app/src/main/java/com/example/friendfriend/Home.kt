@@ -44,13 +44,13 @@ class Home : Fragment() {
 
         binding.messagecard.setOnClickListener{
 //            bundle.putString("gg","ggg")
-            view!!.findNavController().navigate(R.id.action_home_to_chatRoom,bundle)
+            view!!.findNavController().navigate(R.id.action_home_to_chatRoom)
         }
         binding.friendcard.setOnClickListener{
             view!!.findNavController().navigate(R.id.action_home2_to_addedFriend2)
         }
         binding.schedulecard.setOnClickListener{
-            view!!.findNavController().navigate(R.id.action_home_to_confession_Page2)
+            view!!.findNavController().navigate(R.id.action_home_to_scheduleMain)
         }
         binding.confessionPagecard.setOnClickListener{
             view!!.findNavController().navigate(R.id.action_home_to_confession_Page2)
