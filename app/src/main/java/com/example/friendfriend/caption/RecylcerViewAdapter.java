@@ -53,7 +53,7 @@ public class RecylcerViewAdapter extends  RecyclerView.Adapter<RecylcerViewAdapt
             @Override
             public void onClick(View v) {
                 Log.d(TAG,"onClick: clicked on: "+mId.get(position));
-                Toast.makeText(mContext,mId.get(position),Toast.LENGTH_SHORT).show();
+//                Toast.makeText(mContext,mId.get(position),Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(mContext,CaptionActivity.class);
                 intent.putExtra("caption_id",mId.get(position));
