@@ -42,11 +42,6 @@
         android:label="activity_chat_room"
         tools:layout="@layout/activity_chat_room" />
     <activity
-        android:id="@+id/profile"
-        android:name="com.example.friendfriend.Profile.ProfileActivity"
-        android:label="activity_profile"
-        tools:layout="@layout/activity_profile" />
-    <activity
         android:id="@+id/scheduleMain"
         android:name="com.example.friendfriend.schedule.ScheduleMain"
         android:label="schedule_main"

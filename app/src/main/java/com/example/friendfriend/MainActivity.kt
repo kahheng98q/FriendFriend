@@ -24,8 +24,8 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         @Suppress("UNUSED_VARIABLE")
-        selfEmail ="AAAAAAA"
-        selfName="BBBBBBBBBBB"
+//        selfEmail ="AAAAAAA"
+//        selfName="BBBBBBBBBBB"
         val binding =
             DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         drawerLayout = binding.drawerLayout

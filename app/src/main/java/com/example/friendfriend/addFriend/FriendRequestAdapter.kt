@@ -11,6 +11,7 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.friendfriend.R
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import de.hdodenhof.circleimageview.CircleImageView
 //import kotlinx.coroutines.channels.produce
@@ -104,7 +105,7 @@ class FriendRequestAdapter (val context: Context, val friendList:ArrayList<Frien
             declineButton.visibility=View.VISIBLE
 //            acceptButton.setTag(1, itemView)
 //            declineButton.setTag(3, itemView)
-
+            getCurrentUser()
             acceptButton.setOnClickListener{
                 AcceptRequest(adapterPosition)
 
@@ -121,15 +122,16 @@ class FriendRequestAdapter (val context: Context, val friendList:ArrayList<Frien
             = HashMap<String, Object>()
     val db= FirebaseFirestore.getInstance()
     val userTable="New"
-    val currentEmail="kh@gmail.com"
-    val currentName="Kah Heng"
-    val currentImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2iIe9gEuJbItE3_azb1sOA29i8Py_A0TaZDTTUKyJoAEVbgYr&s"
+    lateinit var currentEmail:String
+//    val currentName="Kah Heng"
+//    val currentImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2iIe9gEuJbItE3_azb1sOA29i8Py_A0TaZDTTUKyJoAEVbgYr&s"
     val request="FriendRequest"
     val sent="SentFriendRequest"
     val added="AddedFriend"
     val Email="Email"
     val Image="Image"
     val Name="Name"
+
     fun AcceptRequest(position: Int){
 
         val fEmail=friendList.get(position).email
@@ -143,8 +145,8 @@ class FriendRequestAdapter (val context: Context, val friendList:ArrayList<Frien
                 Toast.makeText(context,"Friend Accepted",Toast.LENGTH_SHORT).show()
 
             }
-        note.put(Name,currentName as Object)
-        note.put(Image,currentImage as Object)
+//        note.put(Name,currentName as Object)
+//        note.put(Image,currentImage as Object)
         note.put(Email,currentEmail as Object)
 
         db.collection(userTable).document(fEmail).collection(added).document(currentEmail).set(note)
@@ -168,6 +170,15 @@ class FriendRequestAdapter (val context: Context, val friendList:ArrayList<Frien
         notifyDataSetChanged()
 
 
+    }
+    private fun getCurrentUser(){
+        val user = FirebaseAuth.getInstance().currentUser
+        user?.let {
+
+            currentEmail = user.email.toString()
+//            selfName=user.displayName.toString()
+
+        }
     }
 
 }

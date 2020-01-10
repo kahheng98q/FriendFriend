@@ -11,9 +11,11 @@ import com.example.friendfriend.messaging.NewMessage.Companion.USER_KEY
 import com.example.friendfriend.R
 import com.example.friendfriend.RegisterActivity
 import com.example.friendfriend.User
+import com.example.friendfriend.addFriend.Friend
 import com.example.friendfriend.views.newMessageRow
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.firestore.FirebaseFirestore
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.activity_chat_room.*
