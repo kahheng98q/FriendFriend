@@ -26,7 +26,7 @@ class FriendProfile : AppCompatActivity() {
     var isfriend = 0
     //table and self email
     val userTable = "New"
-    var currentEmail =""
+    var currentEmail = ""
     val currentName = "Kah Heng"
     val currentImage =
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2iIe9gEuJbItE3_azb1sOA29i8Py_A0TaZDTTUKyJoAEVbgYr&s"
@@ -79,7 +79,7 @@ class FriendProfile : AppCompatActivity() {
             db.collection(userTable).document(currentEmail).collection(sent).document(fEmail)
                 .set(note)
                 .addOnSuccessListener {
-//                    Toast.makeText(applicationContext, "Friend Request Sent", Toast.LENGTH_SHORT)
+                    //                    Toast.makeText(applicationContext, "Friend Request Sent", Toast.LENGTH_SHORT)
 //                        .show()
                     friendbutton.setText(R.string.SentFriendRequest)
                 }
@@ -90,9 +90,7 @@ class FriendProfile : AppCompatActivity() {
             db.collection(userTable).document(fEmail).collection(request).document(currentEmail)
                 .set(noteself)
                 .addOnSuccessListener {
-//                    Toast.makeText(applicationContext, "Friend Request Sent", Toast.LENGTH_SHORT)
-//                        .show()
-//                    friendbutton.setText(R.string.SentFriendRequest)
+
                 }
         } else if ((friendbutton.text.equals("Sent Friend Request"))) {
 
@@ -166,16 +164,23 @@ class FriendProfile : AppCompatActivity() {
     fun checkRequestFriend() {
         if (intent.hasExtra("Email")) {
             val fEmail = intent.getStringExtra("Email")
+
+
+            friendbutton.visibility = View.VISIBLE
             db.collection(userTable).document(currentEmail).collection(sent).document(fEmail)
                 .get()
                 .addOnSuccessListener { document ->
                     if (document != null && document.exists()) {
                         Log.d("exist", "Document data:${document.data}")
+
                         friendbutton.setText(R.string.SentFriendRequest)
 
                         //    }
                     } else {
                         Log.d("non exist", "Non exist")
+                        if (currentEmail.equals(fEmail)) {
+                            friendbutton.visibility = View.GONE
+                        }
                         friendbutton.setText(R.string.AddFriend)
                     }
 
@@ -183,7 +188,26 @@ class FriendProfile : AppCompatActivity() {
                 .addOnFailureListener { exception ->
                     Log.d("Error DB", "Faill", exception)
                 }
+//            db.collection(userTable).document(currentEmail).collection(request).document(fEmail)
+//                .get()
+//                .addOnSuccessListener { document ->
+//                    if (document != null && document.exists()) {
+//                        Log.d("exist", "Document data:${document.data}")
+//                        friendbutton.setText(R.string.SentFriendRequest)
+//
+//                        //    }
+//                    } else {
+//                        Log.d("non exist", "Non exist")
+//                        friendbutton.setText(R.string.AddFriend)
+//                    }
+//
+//                }
+//                .addOnFailureListener { exception ->
+//                    Log.d("Error DB", "Faill", exception)
+//                }
         }
+
+
     }
 
     fun displayAddedProfile() {
@@ -243,7 +267,8 @@ class FriendProfile : AppCompatActivity() {
         }, 3000)
 
     }
-    private fun getCurrentUser(){
+
+    private fun getCurrentUser() {
         val user = FirebaseAuth.getInstance().currentUser
         user?.let {
 
