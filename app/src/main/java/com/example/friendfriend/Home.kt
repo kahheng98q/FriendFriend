@@ -8,7 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
+
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.os.bundleOf
@@ -37,18 +37,6 @@ class Home : Fragment() {
             R.layout.fragment_home, container, false
         )
         getCurrentUser()
-       // Toast.makeText(context, selfName,Toast.LENGTH_SHORT).show()
-//        textViewName=this.(R.id.textViewName) as TextView
-//        textViewAddress=this.findViewById(R.id.textViewAddress) as TextView
-//        savedInstanceState!!.getString("key")
-//        bundle=this.arguments!!
-//
-//         arguments?.get("key")?.let {
-//             selfName = it.toString()
-//             Toast.makeText(context, selfName,Toast.LENGTH_SHORT).show()
-//        }
-//        Toast.makeText(context, selfName,Toast.LENGTH_SHORT).show()
-//        view!!.findNavController().navigate(R.id.confirmationAction, bundle)
 
         binding.messagecard.setOnClickListener{
 //

@@ -225,8 +225,8 @@ class FriendProfile : AppCompatActivity() {
         dialog.show()
         Handler().postDelayed({
             dialog.dismiss()
-            Toast.makeText(applicationContext, friendbutton.text.toString(), Toast.LENGTH_SHORT)
-                .show()
+//            Toast.makeText(applicationContext, friendbutton.text.toString(), Toast.LENGTH_SHORT)
+//                .show()
             if (!friendbutton.text.toString().equals("Delete Friend")) {
                 checkRequestFriend()
             }

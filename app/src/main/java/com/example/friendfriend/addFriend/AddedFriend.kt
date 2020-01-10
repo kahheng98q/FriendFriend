@@ -52,7 +52,7 @@ class AddedFriend : AppCompatActivity() {
         getCurrentUser()
 
         context=this
-        Toast.makeText(applicationContext,selfName,Toast.LENGTH_SHORT).show()
+//        Toast.makeText(applicationContext,selfName,Toast.LENGTH_SHORT).show()
         recyclerView=findViewById(R.id.recyclerView)
         recyclerView.layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         getFriends().execute()
@@ -137,7 +137,7 @@ class AddedFriend : AppCompatActivity() {
             .addOnSuccessListener {
                     documents ->
                 for (document in documents) {
-                    Toast.makeText(applicationContext, document.id, Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(applicationContext, document.id, Toast.LENGTH_SHORT).show()
                     Log.d("ss", "${document.id} => ${document.data}")
                     //   if(document.get("Status").toString().equals("Accepted")){
                     //  friends.add(Friend(document.get("Name").toString(),"GG",document.id,document.get("Image").toString()))
