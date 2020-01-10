@@ -22,82 +22,51 @@ import kotlinx.android.synthetic.main.user_row.view.*
 
 class NewMessage : AppCompatActivity() {
 
-    val db= FirebaseFirestore.getInstance()
-    val friends= ArrayList<Friend>()
-    lateinit var selfName: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_message)
         supportActionBar?.title = "Select Friend"
-        val adapter = GroupAdapter<ViewHolder>()
+//        val adapter = GroupAdapter<ViewHolder>()
 //        adapter.add(UserItem())
 //        adapter.add(UserItem())
 //        adapter.add(UserItem())
 //
 //        recycleViewMsg.adapter = adapter
-        getCurrentUser()
-        retrieveFriends(selfName)
-        friends.forEach {
-            adapter.add()
-        }
+
+        retrieveFriend()
+//        friends.forEach {
+//            adapter.add()
+//        }
     }
     companion object{
         val USER_KEY = "USER_KEY"
     }
-    private fun getCurrentUser(){
-        val user = FirebaseAuth.getInstance().currentUser
-        user?.let {
 
-            selfName = user.email.toString()
-
-        }
-    }
-    fun retrieveFriends(email:String){
-        db.collection("New").document(email)
-            .get()
-            .addOnSuccessListener {
-                    document->
-                if (document!=null&&document.exists()){
-                    //  Toast.makeText(applicationContext,document.id,Toast.LENGTH_SHORT).show()
-                    Log.d("exist","Document data:${document.data}")
-                    friends.add(
-                        Friend(
-                            document.get("Name").toString(), document.get("Address").toString()
-                            , document.get("Email").toString(), document.get("Image").toString()
-                        )
-                    )
+    private fun retrieveFriend(){
+        val ref = FirebaseDatabase.getInstance().getReference("/users")
+        ref.addListenerForSingleValueEvent(object: ValueEventListener{
+            override fun onDataChange(p0: DataSnapshot) {
+                val adapter = GroupAdapter<GroupieViewHolder>()
+                p0.children.forEach{
+                    val user = it.getValue(User::class.java)
+                    if(user!=null)
+                    adapter.add(UserItem(user))
                 }
+                adapter.setOnItemClickListener{ item, view ->
+                    val userItem = item as UserItem
+                    val intent = Intent(view.context, ChatLog::class.java)
+                   // intent.putExtra(USER_KEY, item.user.username)
+                    intent.putExtra(USER_KEY, userItem.user)
+                    startActivity(intent)
+                }
+                recycleViewMsg.adapter = adapter
             }
-            .addOnFailureListener{
-                    exception ->
-                Log.d("Error DB","Fail",exception)
+
+            override fun onCancelled(p0: DatabaseError) {
+
             }
+        })
     }
-//    private fun retrieveFriend(){
-//        val ref = FirebaseDatabase.getInstance().getReference("/users")
-//        ref.addListenerForSingleValueEvent(object: ValueEventListener{
-//            override fun onDataChange(p0: DataSnapshot) {
-//                val adapter = GroupAdapter<GroupieViewHolder>()
-//                p0.children.forEach{
-//                    val user = it.getValue(User::class.java)
-//                    if(user!=null)
-//                    adapter.add(UserItem(user))
-//                }
-//                adapter.setOnItemClickListener{ item, view ->
-//                    val userItem = item as UserItem
-//                    val intent = Intent(view.context, ChatLog::class.java)
-//                   // intent.putExtra(USER_KEY, item.user.username)
-//                    intent.putExtra(USER_KEY, userItem.user)
-//                    startActivity(intent)
-//                }
-//                recycleViewMsg.adapter = adapter
-//            }
-//
-//            override fun onCancelled(p0: DatabaseError) {
-//
-//            }
-//        })
-//    }
 }
 
 class UserItem(val user: User): Item<GroupieViewHolder>(){

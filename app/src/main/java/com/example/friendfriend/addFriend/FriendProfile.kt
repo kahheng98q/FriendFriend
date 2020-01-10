@@ -114,7 +114,8 @@ class FriendProfile : AppCompatActivity() {
                     ).show()
                     friendbutton.setText(R.string.AddFriend)
                 }
-        } else {
+//        } else if((friendbutton.text.equals("Delete"))){
+        } else{
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Do you want to detele " + fName + " ?")
             builder.setPositiveButton("Yes") { dialog, which ->
