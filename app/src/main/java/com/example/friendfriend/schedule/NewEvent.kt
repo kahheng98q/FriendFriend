@@ -89,26 +89,34 @@ class NewEvent : AppCompatActivity() {
         val getCurrentTime = current.format(formatTime)
 
         var checkDate: Boolean
+        var checkDate2: Boolean
         var checkTime: Boolean
         var checkTimeCurrent: Boolean
-        var checkDT:Boolean
+        var checkDT = true
 
         if(checkOneDay){
             if(title.isNotEmpty() && description.isNotEmpty() && startDate.isNotEmpty() && endDate.isNotEmpty() && startTime.isNotEmpty() && endTime.isNotEmpty() && venue.isNotEmpty()){
-                checkDate = getCurrentDate.compareTo(startDate) != 1
+                checkDate = getCurrentDate.compareTo(startDate) >= -1
+                checkDate2 = startDate.compareTo(endDate) >= -1
                 checkTime = startTime <= endTime
                 checkTimeCurrent = startTime > getCurrentTime
-                checkDT = if(!checkDate || !checkTime || !checkTimeCurrent){
+                if(!checkDate || !checkTime || !checkTimeCurrent){
                     Toast.makeText(this, "An event must be start from after now", Toast.LENGTH_LONG).show()
-                    false
+                    checkDT = false
                 }else if(!checkDate){
+                    checkDT = false
+
+                } else if(!checkDate2){
                     Toast.makeText(this, "End date must after start date", Toast.LENGTH_LONG).show()
-                    false
-                } else if(!checkTime){
-                    Toast.makeText(this, "End time must after start time", Toast.LENGTH_LONG).show()
-                    false
+                    checkDT = false
+
+                }else if(checkDate && checkDate2){
+                    if(!checkTime) {
+                        Toast.makeText(this, "End time must after start time", Toast.LENGTH_LONG).show()
+                        checkDT = false
+                    }
                 }else{
-                    true
+                    checkDT = true
                 }
 
                 if(checkDT) {
@@ -147,20 +155,22 @@ class NewEvent : AppCompatActivity() {
             }
         }else{
             if(title.isNotEmpty() && description.isNotEmpty() && startDate.isNotEmpty() && startTime.isNotEmpty() && endTime.isNotEmpty() && venue.isNotEmpty()){
-                checkDate = getCurrentDate.compareTo(startDate) != 1
+                checkDate = getCurrentDate.compareTo(startDate) >= -1
                 checkTime = startTime <= endTime
                 checkTimeCurrent = startTime > getCurrentTime
-                checkDT = if(!checkDate || !checkTime || !checkTimeCurrent){
+                if(!checkDate || !checkTime || !checkTimeCurrent){
                     Toast.makeText(this, "An event must be start from after now", Toast.LENGTH_LONG).show()
-                    false
+                    checkDT = false
                 }else if(!checkDate){
-                    Toast.makeText(this, "End date must after start date", Toast.LENGTH_LONG).show()
-                    false
-                } else if(!checkTime){
-                    Toast.makeText(this, "End time must after start time", Toast.LENGTH_LONG).show()
-                    false
+                    checkDT = false
+
+                }else if(checkDate){
+                    if(!checkTime) {
+                        Toast.makeText(this, "End time must after start time", Toast.LENGTH_LONG).show()
+                        checkDT = false
+                    }
                 }else{
-                    true
+                    checkDT = true
                 }
 
                 if(checkDT) {
