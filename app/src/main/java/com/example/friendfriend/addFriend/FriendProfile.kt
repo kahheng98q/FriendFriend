@@ -79,8 +79,8 @@ class FriendProfile : AppCompatActivity() {
             db.collection(userTable).document(currentEmail).collection(sent).document(fEmail)
                 .set(note)
                 .addOnSuccessListener {
-                    Toast.makeText(applicationContext, "Friend Request Sent", Toast.LENGTH_SHORT)
-                        .show()
+//                    Toast.makeText(applicationContext, "Friend Request Sent", Toast.LENGTH_SHORT)
+//                        .show()
                     friendbutton.setText(R.string.SentFriendRequest)
                 }
             noteself.put(Name, currentName as Object)
@@ -90,13 +90,23 @@ class FriendProfile : AppCompatActivity() {
             db.collection(userTable).document(fEmail).collection(request).document(currentEmail)
                 .set(noteself)
                 .addOnSuccessListener {
-                    Toast.makeText(applicationContext, "Friend Request Sent", Toast.LENGTH_SHORT)
-                        .show()
-                    friendbutton.setText(R.string.SentFriendRequest)
+//                    Toast.makeText(applicationContext, "Friend Request Sent", Toast.LENGTH_SHORT)
+//                        .show()
+//                    friendbutton.setText(R.string.SentFriendRequest)
                 }
         } else if ((friendbutton.text.equals("Sent Friend Request"))) {
 
             db.collection(userTable).document(currentEmail).collection(sent).document(fEmail)
+                .delete()
+                .addOnSuccessListener {
+                    Toast.makeText(
+                        applicationContext,
+                        "Cancelled friend Request",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    friendbutton.setText(R.string.AddFriend)
+                }
+            db.collection(userTable).document(fEmail).collection(request).document(currentEmail)
                 .delete()
                 .addOnSuccessListener {
                     Toast.makeText(
