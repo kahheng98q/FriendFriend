@@ -36,8 +36,8 @@ class Home : Fragment() {
             inflater,
             R.layout.fragment_home, container, false
         )
-        getCurrentUser()
-        Toast.makeText(context, selfName,Toast.LENGTH_SHORT).show()
+      //  getCurrentUser()
+
 //        textViewName=this.(R.id.textViewName) as TextView
 //        textViewAddress=this.findViewById(R.id.textViewAddress) as TextView
 //        savedInstanceState!!.getString("key")

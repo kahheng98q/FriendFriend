@@ -49,6 +49,7 @@ class RegisterActivity : AppCompatActivity() {
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data!= null){
             ImageUri = data.data
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver,ImageUri)
+
             addImageView.setImageBitmap(bitmap)
             // val bitmapDrawable = BitmapDrawable(bitmap)
             //addImage.setBackgroundDrawable(bitmapDrawable)
@@ -87,7 +88,8 @@ class RegisterActivity : AppCompatActivity() {
                 Log.d("RegisterActivity", "Successfully uploaded: ${it.metadata?.path}")
                 ref.downloadUrl.addOnSuccessListener {
                     Log.d("RegisterActivity","File Location: $it")
-                    note.put("Image", ImageUri.toString() as Object)
+                    note.put("Image", it.toString() as Object)
+                   // Toast.makeText(this, it.toString(),Toast.LENGTH_SHORT).show()
                     saveUser(it.toString())
 
                 }

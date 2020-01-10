@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.example.friendfriend.R
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlin.collections.HashMap
@@ -25,7 +26,7 @@ class FriendProfile : AppCompatActivity() {
     var isfriend = 0
     //table and self email
     val userTable = "New"
-    val currentEmail = "kh@gmail.com"
+    var currentEmail =""
     val currentName = "Kah Heng"
     val currentImage =
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2iIe9gEuJbItE3_azb1sOA29i8Py_A0TaZDTTUKyJoAEVbgYr&s"
@@ -53,6 +54,7 @@ class FriendProfile : AppCompatActivity() {
         friendbutton = findViewById(R.id.addFriend)
         friendImage = findViewById(R.id.friendProfilePic)
         friendEmail = findViewById(R.id.email)
+        getCurrentUser()
         displayAddedProfile()
 
 
@@ -135,9 +137,8 @@ class FriendProfile : AppCompatActivity() {
                 .get()
                 .addOnSuccessListener { document ->
                     if (document != null && document.exists()) {
-                        // Toast.makeText(applicationContext, document.id, Toast.LENGTH_SHORT).show()
-                        //   Log.d("exist", "Document data:${document.data}")
-                        System.out.println("1")
+
+
                         friendbutton.setText("Delete Friend")
 
                     } else {
@@ -153,24 +154,26 @@ class FriendProfile : AppCompatActivity() {
 
     //button
     fun checkRequestFriend() {
-        val fEmail = intent.getStringExtra("Email")
-        db.collection(userTable).document(currentEmail).collection(sent).document(fEmail)
-            .get()
-            .addOnSuccessListener { document ->
-                if (document != null && document.exists()) {
-                    Log.d("exist", "Document data:${document.data}")
-                    friendbutton.setText(R.string.SentFriendRequest)
+        if (intent.hasExtra("Email")) {
+            val fEmail = intent.getStringExtra("Email")
+            db.collection(userTable).document(currentEmail).collection(sent).document(fEmail)
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document != null && document.exists()) {
+                        Log.d("exist", "Document data:${document.data}")
+                        friendbutton.setText(R.string.SentFriendRequest)
 
-                    //    }
-                } else {
-                    Log.d("non exist", "Non exist")
-                    friendbutton.setText(R.string.AddFriend)
+                        //    }
+                    } else {
+                        Log.d("non exist", "Non exist")
+                        friendbutton.setText(R.string.AddFriend)
+                    }
+
                 }
-
-            }
-            .addOnFailureListener { exception ->
-                Log.d("Error DB", "Faill", exception)
-            }
+                .addOnFailureListener { exception ->
+                    Log.d("Error DB", "Faill", exception)
+                }
+        }
     }
 
     fun displayAddedProfile() {
@@ -229,5 +232,13 @@ class FriendProfile : AppCompatActivity() {
             }
         }, 3000)
 
+    }
+    private fun getCurrentUser(){
+        val user = FirebaseAuth.getInstance().currentUser
+        user?.let {
+
+            currentEmail = user.email.toString()
+
+        }
     }
 }

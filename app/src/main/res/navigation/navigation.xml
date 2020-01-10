@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_home_to_scheduleMain"
             app:destination="@id/scheduleMain" />
+        <action
+            android:id="@+id/action_home_to_loginActivity"
+            app:destination="@id/loginActivity" />
     </fragment>
     <activity
         android:id="@+id/addedFriend"
@@ -48,4 +51,8 @@
         android:name="com.example.friendfriend.schedule.ScheduleMain"
         android:label="schedule_main"
         tools:layout="@layout/schedule_main" />
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.friendfriend.LoginActivity"
+        android:label="LoginActivity" />
 </navigation>

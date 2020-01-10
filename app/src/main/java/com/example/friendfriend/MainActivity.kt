@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(binding.navView, navController)
         getCurrentUser()
-        Toast.makeText(this, selfName,Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, selfName,Toast.LENGTH_SHORT).show()
 //        bundle.putString("gg","ggg")
 //        home.arguments=bundle
 //        val bundle = Bundle()

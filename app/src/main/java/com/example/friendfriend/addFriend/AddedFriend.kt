@@ -197,6 +197,7 @@ class AddedFriend : AppCompatActivity() {
         progressDialog.setMessage("Loading")
         progressDialog.setCancelable(false)
         progressDialog.show()
+
 //
 //        Toast.makeText(applicationContext,,Toast.LENGTH_SHORT).show()
 //        val builder=AlertDialog.Builder(this)

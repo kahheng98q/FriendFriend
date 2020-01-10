@@ -23,4 +23,8 @@
 
         android:title="Schedule"
         />
+    <item android:id="@+id/loginActivity"
+
+        android:title="Log Out"
+        />
 </menu>
